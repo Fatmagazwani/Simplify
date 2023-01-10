@@ -32,6 +32,7 @@
 		AD349F42296A37570058BE59 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD349EC429656A440058BE59 /* Preview Assets.xcassets */; };
 		AD6BBBF3296A39DC0052C4BC /* CountDownWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD349F34296A329A0058BE59 /* CountDownWidget.swift */; };
 		ADC19E80296C94680089478B /* DismissingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E7F296C94680089478B /* DismissingView.swift */; };
+		ADC19E84296D7D370089478B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E83296D7D370089478B /* Notification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		AD6BBBF6296A3FA30052C4BC /* CountDownWidgetExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CountDownWidgetExtensionDebug.entitlements; sourceTree = "<group>"; };
 		ADC19E7A296AA1620089478B /* CountDownDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CountDownDebug.entitlements; sourceTree = "<group>"; };
 		ADC19E7F296C94680089478B /* DismissingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissingView.swift; sourceTree = "<group>"; };
+		ADC19E83296D7D370089478B /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				AD6BBBF4296A3E570052C4BC /* CountDown.entitlements */,
 				AD349EBD29656A430058BE59 /* CountDownApp.swift */,
 				AD349EBF29656A430058BE59 /* Event1.swift */,
+				ADC19E83296D7D370089478B /* Notification.swift */,
 				AD349EF7296600680058BE59 /* Events.swift */,
 				ADC19E7F296C94680089478B /* DismissingView.swift */,
 				AD349EDB2965BBD50058BE59 /* AddingEvents.swift */,
@@ -298,6 +301,7 @@
 				AD349EC029656A430058BE59 /* Event1.swift in Sources */,
 				AD349EBE29656A430058BE59 /* CountDownApp.swift in Sources */,
 				AD349EF8296600680058BE59 /* Events.swift in Sources */,
+				ADC19E84296D7D370089478B /* Notification.swift in Sources */,
 				AD349EDC2965BBD50058BE59 /* AddingEvents.swift in Sources */,
 				AD349ECA29656A440058BE59 /* CountDownData.xcdatamodeld in Sources */,
 				AD349ED529656F000058BE59 /* ColorPicker.swift in Sources */,

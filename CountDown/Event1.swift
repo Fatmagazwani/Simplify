@@ -45,10 +45,14 @@ extension TheColor {
             }
         }
 }
+let duedate = Date()
+let format = duedate.getFormattedDate(format: "yyyy-MM-dd") // Set output format
 
 struct Event1: View {
     @State private var name: String = ""
     @State private var theColor: TheColor = .blue
+    @State private var duedate: String = ""
+
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: Event.entity(), sortDescriptors: [NSSortDescriptor(key: "duedate", ascending: true)]) private var allEvents: FetchedResults<Event>
@@ -100,12 +104,12 @@ struct Event1: View {
             }
         }
     }
-    //    @State private var date = Date()
     @State private var dueDate = Date()
-    @State private var date = Date()
+    
+//    @State private var date = Date()
     @State private var showsheet: Bool = false
     @State private var showingDetail = false
-    
+
     var body: some View {
         
         Group{
@@ -115,8 +119,8 @@ struct Event1: View {
                     
                     VStack(alignment: .trailing){
                         HStack(alignment: .top){
-                            
-                            Button("Add an event") {
+                            Spacer()
+                            Button("Add") {
                                 showingDetail = true
                             }
                             .sheet(isPresented: $showingDetail) {
@@ -140,7 +144,6 @@ struct Event1: View {
                                             
                                             
                                         }.padding()
-                                        
                                         Picker("Pick a color for the event borders", selection: $theColor) {
                                             ForEach(TheColor.allCases) { thecolor in
                                                 Text(thecolor.title).tag(thecolor)
@@ -164,28 +167,28 @@ struct Event1: View {
                                         
                                     }
                                 }
-                                }
-                                }
-                                .frame(height: 20)
-                                .padding(.top)
-                                .padding(.horizontal, 24)
-                                .font(.title3)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.accentColor)
-                                Spacer()
-                                
-                                
-                                Text("No Eevnts Yet ")
-                                    .font(.largeTitle)
-                                    .foregroundColor(.gray)
-                                Text("""
+                            }
+                        }
+                        .frame(height: 20)
+                        .padding(.top)
+                        .padding(.horizontal, 24)
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.accentColor)
+                        Spacer()
+                    }
+                    VStack{
+                        Text("No Eevnts Yet ")
+                            .font(.largeTitle)
+                            .foregroundColor(.gray)
+                        Text("""
 press Add to add a new event
 """)
-                                .font(.title2)
-                                .foregroundColor(.gray)
-                                .multilineTextAlignment(.center)
-                                
-                                Spacer()
+                        .font(.title2)
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                        
+                    
                             }
                         
                     
@@ -265,23 +268,23 @@ press Add to add a new event
                                                 HStack(alignment: .top){
                                                     Text(event.name ?? "")
                                                     Text("-")
-                                                    //                                            Text(event.duedate ?? "")
+                                                    Text(dueDate, style:.date) // 47:59:50
+                                               
                                                     Spacer()
                                                 }.padding(.horizontal)
-                                                    .font(.body)
+                                                    .font(.caption)
                                                     .fontWeight(.semibold)
                                                     .foregroundColor(.black)
-                                                
                                                 Spacer()
-                                            }
-                                            .padding()
+                                            }.padding(.top)
                                             VStack{
-                                                Text(date, style:.timer) // 47:59:50
+//                                                Text(Date.distantFuture, format: .dateTime.month())
+                                                Text(dueDate, style:.timer) // 47:59:50
                                                     .font(.title)
                                                     .padding(.top)
                                                     .fontWeight(.bold)
                                                     .foregroundColor(theSelectedColor(event.thecolor!))
-                                                //                                    Text("00 , 00 , 00")
+
                                                 HStack{
                                                     Text("days")
                                                     Text("hours")
@@ -299,7 +302,12 @@ press Add to add a new event
                 }
             }
         }
-    
+//func trivialExample () {
+//    let components = Calendar.current.dateComponents ([.year, .month, .day], from: Date.distantFuture )
+//    let year = components.month ?? 00
+//    let month = components.month ?? 00
+//    let day = components.month ?? 00
+//}
 
     struct Event1_Previews: PreviewProvider {
         static var previews: some View {
@@ -308,3 +316,13 @@ press Add to add a new event
         }
     }
 
+//let date = Date()
+//let format = date.getFormattedDate(format: "yyyy-MM-dd HH:mm:ss") // Set output format
+//
+extension Date {
+   func getFormattedDate(format: String) -> String {
+        let dateformat = DateFormatter()
+        dateformat.dateFormat = "MM/dd/yyyy"
+        return dateformat.string(from: self)
+    }
+}
