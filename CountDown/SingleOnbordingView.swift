@@ -28,13 +28,13 @@ struct SingleOnbordingView: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
             
-            if onbordingType == .share {
+            if onbordingType == .accessibility {
                 Button {
                     withAnimation(.spring()) {
                         isUserOnboarded = true
                     }
                 } label: {
-                    Text("Get Started")
+                    Text("Get_Started")
                         .font(.headline)
                         .padding()
                         .foregroundColor(colorScheme == .light ? .white : .black)
@@ -54,6 +54,6 @@ struct SingleOnbordingView: View {
 
 struct SingleOnbordingView_Previews: PreviewProvider {
     static var previews: some View {
-        SingleOnbordingView(onbordingType: OnbordingType.scan)
+        SingleOnbordingView(onbordingType: OnbordingType.track)
     }
 }

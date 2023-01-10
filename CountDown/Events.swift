@@ -48,10 +48,14 @@
 //    }
 //}
 //
+////let duedate = Date()
+////let format = duedate.getFormattedDate(format: "yyyy-MM-dd") // Set output format
+//
 //struct Events: View {
-//    
 //    @State private var name: String = ""
-//    @State private var choosingcolor: pickerofcolor = .blue
+//    @State private var theColor: TheColor = .blue
+//    @State private var duedate: String = ""
+//    
 //    
 //    @Environment(\.managedObjectContext) private var viewContext
 //    @FetchRequest(entity: Event.entity(), sortDescriptors: [NSSortDescriptor(key: "duedate", ascending: true)]) private var allEvents: FetchedResults<Event>
@@ -60,18 +64,18 @@
 //        do {
 //            let event = Event(context: viewContext)
 //            event.name = name
-//            event.thecolor = choosingcolor.rawValue
+//            event.thecolor = theColor.rawValue
 //            event.duedate = Date()
 //            try viewContext.save()
-//        } catch{
+//        }catch{
 //            print(error.localizedDescription)
 //            
 //        }
 //    }
 //    private func theSelectedColor(_ value: String) -> Color{
-//        let thecolor = pickerofcolor(rawValue: value)
+//        let  thecolor = TheColor(rawValue: value)
 //        
-//        switch choosingcolor {
+//        switch theColor {
 //        case .red:
 //            return Color.red
 //        case .yellow:
@@ -90,6 +94,7 @@
 //            return Color.mint
 //        }
 //    }
+//    
 //    private func deleteEvent (at offsets: IndexSet) {
 //        offsets.forEach {
 //            index in
@@ -102,9 +107,11 @@
 //            }
 //        }
 //    }
-//    @State private var date = Date()
+//    @State private var dueDate = Date()
+//    //    @State private var date = Date()
+//    @State private var showsheet: Bool = false
 //    @State private var showingDetail = false
-//
+//    
 //    var body: some View {
 //        
 //        Group{
@@ -115,10 +122,13 @@
 //                    VStack {
 //                        
 //                        HStack{
-//
+//                            
 //                            Spacer()
-//                            Button("Add an event") {
+//                            Button("Add") {
 //                                showingDetail = true
+//                                
+//                                //                                AddingEvents()
+//                                //                                Dismiss()
 //                            }
 //                            .sheet(isPresented: $showingDetail) {
 //                                ScrollView{
@@ -130,7 +140,7 @@
 //                                            .padding([.leading, .bottom, .trailing])
 //                                            .labelsHidden()
 //                                            .datePickerStyle(.graphical)
-//                                            
+//                                        
 //                                        
 //                                        VStack(alignment: .leading){
 //                                            Text("Event Name:")
@@ -138,7 +148,7 @@
 //                                                .fontWeight(.semibold)
 //                                            TextField("Event Name", text: $name)
 //                                                .textFieldStyle(.roundedBorder)
-//                                                
+//                                            
 //                                            
 //                                        }.padding()
 //                                        
@@ -149,116 +159,155 @@
 //                                                
 //                                            }.pickerStyle(.segmented)
 //                                        }.padding()
-//                                Button (action: {
-//                                     addEvent()
-//                 
-//                                 }, label: {
-//                                     Text("Add Event")
-//                                         .font(.title3)
-//                                         .fontWeight(.semibold)
-//                                         .padding (16.0)
-//                                         .background(Color.accentColor)
-//                                         .foregroundColor(.white)
-//                                         .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
-//                                 })
-//                                DismissingView()
-//                                
-//                            }
-////                            NavigationLink(destination: AddingEvents()) {
-////                                Image(systemName: "square.and.pencil")
-////                                    .foregroundColor(.accentColor)
-////                            }.navigationTitle("Add a new event")
-//                                
-//                            
-//                        }
-//                        .frame(height: 20)
-//                        .padding(.top)
-//                        .padding(.horizontal, 24)
-//                        .font(.title2)
-//                        .fontWeight(.semibold)
-//                        .foregroundColor(.blue)
-//                        Spacer()
-//                        
-//                        Text("No Eevnts Yet ")
-//                            .font(.largeTitle)
-//                            .foregroundColor(.gray)
-//                        Text("""
-//press Add to add a new event
-//""")
-//                            .font(.title2)
-//                            .foregroundColor(.gray)
-//                            .multilineTextAlignment(.center)
-//                            
-//                        Spacer()
-//                    }
-//                } else {
-//                    
-//                    
-//                    VStack{
-//                        HStack{
-//                            Button("Show Detail") {
-//                                showingDetail = true
-//                            }
-//                            .sheet(isPresented: $showingDetail) {
-//                                DismissingView()
-//                            }
-//                            Spacer()
-//                            NavigationLink(destination: AddingEvents()) {
-//                                Image(systemName: "square.and.pencil")
-//                                    .foregroundColor(.accentColor)
-//                            }.navigationTitle("Add a new event")
-//                        }
-//                        .frame(height: 20)
-//                        .padding(.top)
-//                        .padding(.horizontal, 24)
-//                        .font(.title2)
-//                        .fontWeight(.semibold)
-//                        .foregroundColor(.blue)
-//                        Spacer()
-//                        
-//                        List{
-//                            ForEach(allEvents) { event in
-//                                ZStack{
-//                                    RoundedRectangle(cornerRadius: 13)
-//                                        .stroke(theSelectedColor(event.thecolor!), lineWidth: 5)
-//                                        .frame(height: 120)
-//                                        .ignoresSafeArea()
-//                                    
-//                                    VStack(alignment: .leading){
-//                                        HStack(alignment: .top){
-//                                            Text(event.name ?? "")
-//                                            Text("-")
-//                                            //                                            Text(event.duedate ?? "")
-//                                            Spacer()
-//                                        }.padding(.horizontal)
-//                                            .font(.body)
-//                                            .fontWeight(.semibold)
-//                                            .foregroundColor(.black)
+//                                        Button (action: {
+//                                            addEvent()
+//                                            
+//                                        }, label: {
+//                                            Text("Add Event")
+//                                                .font(.title3)
+//                                                .fontWeight(.semibold)
+//                                                .padding (16.0)
+//                                                .background(Color.accentColor)
+//                                                .foregroundColor(.white)
+//                                                .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
+//                                        })
+////                                        DismissingView()
 //                                        
-//                                        Spacer()
-//                                    }
-//                                    .padding()
-//                                    VStack{
-//                                        Text(date, style:.timer) // 47:59:50
-//                                            .font(.title)
-//                                            .padding(.top)
-//                                            .fontWeight(.bold)
-//                                            .foregroundColor(theSelectedColor(event.thecolor!))
-//                                        //                                    Text("00 , 00 , 00")
-//                                        Text("days      hours      menets")
-//                                            .font(.caption)
 //                                    }
 //                                }
-//                            }.onDelete(perform: deleteEvent)
-//                        }.scrollContentBackground(.hidden)
+//                                .frame(height: 20)
+//                                .padding(.top)
+//                                .padding(.horizontal, 24)
+//                                .font(.title2)
+//                                .fontWeight(.semibold)
+//                                .foregroundColor(.blue)
+//                            }
+//                        }.padding(.horizontal)
+//                        Spacer()
+//
+//                    }.padding()
+//                    VStack{
+//                                Text("No Eevnts Yet ")
+//                                    .font(.largeTitle)
+//                                    .foregroundColor(.gray)
+//                                Text("""
+//press Add to add a new event
+//""")
+//                                .font(.title2)
+//                                .foregroundColor(.gray)
+//                                .multilineTextAlignment(.center)
+//                                
+//                            }
 //                        
+//                        }else {
+//                            
+//                            VStack(alignment: .trailing){
+//                                HStack(alignment: .top){
+//                                    Spacer()
+//                                    Button("Add an event") {
+//                                        showingDetail = true
+//                                    }
+//                                    .sheet(isPresented: $showingDetail) {
+//                                        ScrollView{
+//                                            
+//                                            
+//                                            VStack {
+//                                                
+//                                                DatePicker("Please enter a date", selection: $dueDate)
+//                                                    .padding([.leading, .bottom, .trailing])
+//                                                    .labelsHidden()
+//                                                    .datePickerStyle(.graphical)
+//                                                
+//                                                
+//                                                VStack(alignment: .leading){
+//                                                    Text("Event Name:")
+//                                                        .font(.title3)
+//                                                        .fontWeight(.semibold)
+//                                                    TextField("Event Name", text: $name)
+//                                                        .textFieldStyle(.roundedBorder)
+//                                                    
+//                                                    
+//                                                }.padding()
+//                                                
+//                                                Picker("Pick a color for the event borders", selection: $theColor) {
+//                                                    ForEach(TheColor.allCases) { thecolor in
+//                                                        Text(thecolor.title).tag(thecolor)
+//                                                            .fontWeight(.bold)
+//                                                        
+//                                                    }.pickerStyle(.segmented)
+//                                                }.padding()
+//                                                Button (action: {
+//                                                    addEvent()
+//                                                    
+//                                                }, label: {
+//                                                    Text("Add Event")
+//                                                        .font(.title3)
+//                                                        .fontWeight(.semibold)
+//                                                        .padding (16.0)
+//                                                        .background(Color.accentColor)
+//                                                        .foregroundColor(.white)
+//                                                        .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
+//                                                })
+//                                                //                                        DismissingView()
+//                                                
+//                                            }
+//                                        }
+//                                        
+//                                        
+//                                    }
+//                                    .frame(height: 20)
+//                                    .padding(.top)
+//                                    .padding(.horizontal, 24)
+//                                    .font(.title2)
+//                                    .fontWeight(.semibold)
+//                                    .foregroundColor(.accentColor)
+//                                }
+//                                List{
+//                                    ForEach(allEvents) { event in
+//                                        ZStack{
+//                                            RoundedRectangle(cornerRadius: 13)
+//                                                .stroke(theSelectedColor(event.thecolor!), lineWidth: 5)
+//                                                .frame(height: 120)
+//                                                .ignoresSafeArea()
+//                                            
+//                                            VStack(alignment: .leading){
+//                                                HStack(alignment: .top){
+//                                                    Text(event.name ?? "")
+//                                                    Text("-")
+//                                                    Text(dueDate, style:.date) // 47:59:50
+//                                                    
+//                                                    Spacer()
+//                                                }.padding(.horizontal)
+//                                                    .font(.caption)
+//                                                    .fontWeight(.semibold)
+//                                                    .foregroundColor(.black)
+//                                                Spacer()
+//                                            }.padding(.top)
+//                                            VStack{
+//                                                //                                                Text(Date.distantFuture, format: .dateTime.month())
+//                                                Text(dueDate, style:.timer) // 47:59:50
+//                                                    .font(.title)
+//                                                    .padding(.top)
+//                                                    .fontWeight(.bold)
+//                                                    .foregroundColor(theSelectedColor(event.thecolor!))
+//                                                
+//                                                HStack{
+//                                                    Text("days")
+//                                                    Text("hours")
+//                                                    Text("minutes")
+//                                                }.font(.caption)
+//                                                
+//                                            }
+//                                        }
+//                                    }.onDelete(perform: deleteEvent)
+//                                }.scrollContentBackground(.hidden)
+//                            }
+//                        }
 //                    }
-//                }
 //                }
 //            }
 //        }
-//    }
-//
+//    
 //
 //struct Events_Previews: PreviewProvider {
 //    static var previews: some View {

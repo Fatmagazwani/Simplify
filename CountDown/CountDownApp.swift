@@ -9,13 +9,19 @@ import SwiftUI
 
 @main
 struct CountDownApp: App {
+    
     let persistentContainer = CoreDataManager.shared.persistentContainer
     
     var body: some Scene {
+        
         WindowGroup {
             NavigationView{
-//                LoadingView()
-                Event1().environment(\.managedObjectContext, persistentContainer.viewContext)
+                
+                LoadingView().environment(\.managedObjectContext, persistentContainer.viewContext)
+//                CircularTimer()
+//                OnbordingView()
+//                Event1().environment(\.managedObjectContext, persistentContainer.viewContext)
+//                CircularTimer()
             }
         }
     }

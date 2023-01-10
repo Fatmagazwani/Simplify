@@ -33,6 +33,8 @@
 		AD6BBBF3296A39DC0052C4BC /* CountDownWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD349F34296A329A0058BE59 /* CountDownWidget.swift */; };
 		ADC19E80296C94680089478B /* DismissingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E7F296C94680089478B /* DismissingView.swift */; };
 		ADC19E84296D7D370089478B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E83296D7D370089478B /* Notification.swift */; };
+		ADC19E86296DA0EF0089478B /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E85296DA0EF0089478B /* ColorPickerView.swift */; };
+		ADC19E93296DDFA10089478B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E92296DDFA10089478B /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,8 @@
 		ADC19E7A296AA1620089478B /* CountDownDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CountDownDebug.entitlements; sourceTree = "<group>"; };
 		ADC19E7F296C94680089478B /* DismissingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissingView.swift; sourceTree = "<group>"; };
 		ADC19E83296D7D370089478B /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		ADC19E85296DA0EF0089478B /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		ADC19E92296DDFA10089478B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,21 +142,23 @@
 			children = (
 				ADC19E7A296AA1620089478B /* CountDownDebug.entitlements */,
 				AD6BBBF4296A3E570052C4BC /* CountDown.entitlements */,
+				ADC19E83296D7D370089478B /* Notification.swift */,
 				AD349EBD29656A430058BE59 /* CountDownApp.swift */,
 				AD349EBF29656A430058BE59 /* Event1.swift */,
-				ADC19E83296D7D370089478B /* Notification.swift */,
 				AD349EF7296600680058BE59 /* Events.swift */,
 				ADC19E7F296C94680089478B /* DismissingView.swift */,
 				AD349EDB2965BBD50058BE59 /* AddingEvents.swift */,
-				AD349ED429656F000058BE59 /* ColorPicker.swift */,
+				ADC19E85296DA0EF0089478B /* ColorPickerView.swift */,
 				AD349EC629656A440058BE59 /* CoreDataManager.swift */,
+				AD349ED429656F000058BE59 /* ColorPicker.swift */,
 				AD349ED229656EAD0058BE59 /* MyColorPicker.swift */,
-				AD349EC829656A440058BE59 /* CountDownData.xcdatamodeld */,
-				AD349EC329656A440058BE59 /* Preview Content */,
 				AD349EFB296865560058BE59 /* LoadingView.swift */,
+				ADC19E92296DDFA10089478B /* ViewController.swift */,
 				AD349EFD296865690058BE59 /* OnbordingView.swift */,
 				AD349EFF296867C40058BE59 /* SingleOnbordingView.swift */,
+				AD349EC829656A440058BE59 /* CountDownData.xcdatamodeld */,
 				AD349F05296A2EBB0058BE59 /* Localizable.strings */,
+				AD349EC329656A440058BE59 /* Preview Content */,
 			);
 			path = CountDown;
 			sourceTree = "<group>";
@@ -298,6 +304,8 @@
 				AD349ED329656EAD0058BE59 /* MyColorPicker.swift in Sources */,
 				ADC19E80296C94680089478B /* DismissingView.swift in Sources */,
 				AD6BBBF3296A39DC0052C4BC /* CountDownWidget.swift in Sources */,
+				ADC19E86296DA0EF0089478B /* ColorPickerView.swift in Sources */,
+				ADC19E93296DDFA10089478B /* ViewController.swift in Sources */,
 				AD349EC029656A430058BE59 /* Event1.swift in Sources */,
 				AD349EBE29656A430058BE59 /* CountDownApp.swift in Sources */,
 				AD349EF8296600680058BE59 /* Events.swift in Sources */,

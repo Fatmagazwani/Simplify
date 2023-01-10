@@ -45,11 +45,14 @@
 //        }
 //    }
 //}
-//
+//let duedate = Date()
+//let format = duedate.getFormattedDate(format: "yyyy-MM-dd") // Set output format
 //
 //struct AddingEvents: View {
 //    @State private var name: String = ""
 //    @State private var theColor: TheColor = .blue
+//    @State private var duedate: String = ""
+//
 //    @Environment(\.managedObjectContext) var managedObjectContext
 //    @Environment(\.managedObjectContext) private var viewContext
 //    @FetchRequest(entity: Event.entity(), sortDescriptors: [NSSortDescriptor(key: "duedate", ascending: true)]) private var allEvents: FetchedResults<Event>
@@ -67,7 +70,7 @@
 //            
 //        }
 //    }
-//    private func theSelectedColor(_ value: String) -> Color{
+//    private func selectedColor (_ value: String) -> Color{
 //        let  thecolor = TheColor(rawValue: value)
 //        
 //        switch theColor {
@@ -94,75 +97,68 @@
 //    @State private var dueDate = Date()
 //    @State private var showsheet: Bool = false
 //    @State private var showingDetail = false
+//    @State private var selectedColor: Color = .blue
 //    
 //    var body: some View {
-//
-//        ScrollView{
+//     
 //            
-//            
-//            VStack {
-//                
-//                DatePicker("Please enter a date", selection: $dueDate)
-//                    .padding([.leading, .bottom, .trailing])
-//                    .labelsHidden()
-//                    .datePickerStyle(.graphical)
+//            VStack(alignment: .leading) {
 //                    
-//                
-//                VStack(alignment: .leading){
-//                    Text("Event Name:")
-//                        .font(.title3)
-//                        .fontWeight(.semibold)
-//                    TextField("Event Name", text: $name)
-//                        .textFieldStyle(.roundedBorder)
-//                        
+//                    DatePicker("Please enter a date", selection: $dueDate)
+//                        .padding([.leading, .bottom, .trailing])
+//                        .labelsHidden()
+//                        .datePickerStyle(.graphical)
 //                    
-//                }.padding()
-//                
-//                Picker("Pick a color for the event borders", selection: $theColor) {
-//                    ForEach(TheColor.allCases) { thecolor in
-//                        Text(thecolor.title).tag(thecolor)
-//                            .fontWeight(.bold)
+//                    
+//                    VStack(alignment: .leading){
+//                        Text("Event Name:")
+//                            .font(.title3)
+//                            .fontWeight(.semibold)
+//                        TextField("Event Name", text: $name)
+//                            .textFieldStyle(.roundedBorder)
 //                        
-//                    }.pickerStyle(.segmented)
-//                }.padding()
-//
-//                               Button (action: {
-//                                    addEvent()
-//                
-//                                }, label: {
-//                                    Text("Add Event")
-//                                        .font(.title3)
-//                                        .fontWeight(.semibold)
-//                                        .padding (16.0)
-//                                        .background(Color.accentColor)
-//                                        .foregroundColor(.white)
-//                                        .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
-//                                })
-////                                .disabled(self.allEvents == "" ? true: false)
-//                
-////                Button("Add Event") {
-////                    addEvent()
-////                }
-////                .font(.title3)
-////                .fontWeight(.semibold)
-////                .padding (16.0)
-////                .background(Color.accentColor)
-////                .foregroundColor(.white)
-////                .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
-////                Spacer()
-////            }
-////            .padding()
-////            .sheet(isPresented: $showingDetail) {
-////                DismissingView1()
+//                        
+//                    }.padding()
+//                    
+//                    MyColorPicker(selectedColor: $selectedColor)
+//                    
+//                    //                Picker("Pick a color for the event borders", selection: $theColor) {
+//                    //                    ForEach(TheColor.allCases) { thecolor in
+//                    //                        Text(thecolor.title).tag(thecolor)
+//                    //                            .fontWeight(.bold)
+//                    //                    }.pickerStyle(.segmented)
+//                    //                }.padding()
+//                    
+//                    Button (action: {
+//                        addEvent()
+//                        
+//                    }, label: {
+//                        Text("Add Event")
+//                            .font(.title3)
+//                            .fontWeight(.semibold)
+//                            .padding (16.0)
+//                            .background(Color.accentColor)
+//                            .foregroundColor(.white)
+//                            .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
+//                    })
+//                    
+//                }
 //            }
 //        }
-//    }
-//}
+//    
+//
 //
 //struct AddingEvents_Previews: PreviewProvider {
 //    static var previews: some View {
 //        let persistentContainer = CoreDataManager.shared.persistentContainer
 //        AddingEvents().environment(\.managedObjectContext, persistentContainer.viewContext)
 //        
+//    }
+//}
+//extension Date {
+//   func getFormattedDate(format: String) -> String {
+//        let dateformat = DateFormatter()
+//        dateformat.dateFormat = "MM/dd/yyyy"
+//        return dateformat.string(from: self)
 //    }
 //}

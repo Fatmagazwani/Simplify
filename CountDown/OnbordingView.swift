@@ -8,47 +8,40 @@ import SwiftUI
 
 
 enum OnbordingType: CaseIterable {
-    case scan
     case track
-    case remind
-    case share
+    case notified
+    case accessibility
     
     var image: String {
         switch self {
-        case .scan:
-            return "scan"
         case .track:
             return "track"
-        case .remind:
-            return "reminder"
-        case .share:
-            return "share"
+        case .notified:
+            return "notified"
+        case .accessibility:
+            return "accessibility"
         }
     }
     
     var title: String {
         switch self {
-        case .scan:
-            return "Scan"
         case .track:
             return "Track"
-        case .remind:
-            return "Remind"
-        case .share:
-            return "Share"
+        case .notified:
+            return "Get notified"
+        case .accessibility:
+            return "Customize"
         }
     }
     
     var description: String {
         switch self {
-        case .scan:
-            return "Scan any product barcode with easiest way."
         case .track:
-            return "Track your products validity through colors to get the most benefit of it!"
-        case .remind:
-            return "Enable notification to get reminder in your chosen time."
-        case .share:
-            return "Share products details with any one to keep track of all expiry date products."
+            return "Track your events through our countdown feature."
+        case .notified:
+            return "Enable widgets and notification to get reminder of your events."
+        case .accessibility:
+            return "Supports Arabic and English languages, light and dark mode, and Voice over."
         }
     }
 }
@@ -58,7 +51,7 @@ struct OnbordingView: View {
     
     @Environment(\.colorScheme) var colorScheme
     @AppStorage("isUserOnboarded") var isUserOnboarded: Bool = false
-    @State var selectedOnbordingType: OnbordingType = .scan
+    @State var selectedOnbordingType: OnbordingType = .track
     
     var body: some View {
         ZStack {
@@ -76,7 +69,7 @@ struct OnbordingView: View {
             .tabViewStyle(.page(indexDisplayMode: .always))
             .indexViewStyle(.page(backgroundDisplayMode: .always))
             
-            if selectedOnbordingType != .share {
+            if selectedOnbordingType != .accessibility {
                 skipButton
             }
         }
@@ -106,7 +99,7 @@ extension OnbordingView {
         .padding(.trailing)
         .frame(maxWidth: .infinity, alignment: .trailing)
         .frame(maxHeight: .infinity, alignment: .top)
-        .foregroundColor(.secondary)
+        .foregroundColor(.accentColor)
     }
 }
 

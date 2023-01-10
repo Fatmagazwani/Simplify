@@ -21,18 +21,16 @@ struct LoadingView: View {
             if !isUserOnboarded {
                 OnbordingView()
             } else {
+//                AddingEvents()
                 Event1()
-//                Event1()
             }
         } else {
-            ZStack {
-                Color.blue
-                    .ignoresSafeArea()
+
                 
                 Image("logo")
                     .resizable()
                     .scaledToFit()
-                    .aspectRatio(0.3, contentMode: .fit)
+                    .aspectRatio(0.5, contentMode: .fit)
                     .scaleEffect(size)
                     .opacity(opacity)
                     .onAppear {
@@ -47,7 +45,7 @@ struct LoadingView: View {
                             withAnimation {
                                 self.isActive = true
                             }
-                        }
+                        
                     }
             }
         }
@@ -58,6 +56,8 @@ struct LoadingView: View {
 
 struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        LoadingView()
+        let persistentContainer = CoreDataManager.shared.persistentContainer
+
+        LoadingView().environment(\.managedObjectContext, persistentContainer.viewContext)
     }
 }

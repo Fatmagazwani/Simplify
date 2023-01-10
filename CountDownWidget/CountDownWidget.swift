@@ -45,8 +45,8 @@ struct CountDownWidgetEntryView : View {
 
     var body: some View {
         ZStack{
-            ContainerRelativeShape()
-                .fill(.white)
+        Image("logo")
+
 //                .stroke(theSelectedColor(event.thecolor!), lineWidth: 5)
         Text(entry.date, style: .time)
     }
