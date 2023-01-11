@@ -5,8 +5,8 @@
 ////  Created by Fatma Gazwani on 11/06/1444 AH.
 ////
 //
-//import SwiftUI
-//import CoreData
+import SwiftUI
+import CoreData
 //
 //enum TheColor: String, Identifiable, CaseIterable {
 //    var id: UUID {
@@ -48,7 +48,7 @@
 ////let duedate = Date()
 ////let format = duedate.getFormattedDate(format: "yyyy-MM-dd") // Set output format
 //
-//struct AddingEvents: View {
+struct AddingEvents: View {
 //    @State private var name: String = ""
 //    @State private var theColor: TheColor = .blue
 //    @State private var duedate: String = ""
@@ -97,11 +97,11 @@
 //    @State private var dueDate = Date()
 ////    @State private var showsheet: Bool = false
 ////    @State private var showingDetail = false
-//    @State private var selectedColor: Color = .blue
+    @State private var selectedColor: Color = .blue
 //    @Environment(\.dismiss) var dismiss
 //
 //    
-//    var body: some View {
+    var body: some View {
 //     
 //            
 //            VStack(alignment: .leading) {
@@ -122,7 +122,7 @@
 //                        
 //                    }.padding()
 //                    
-////                    MyColorPicker(selectedColor: $selectedColor)
+                    MyColorPicker(selectedColor: $selectedColor)
 //                    
 //                                    Picker("Pick a color for the event borders", selection: $theColor) {
 //                                        ForEach(TheColor.allCases) { thecolor in
@@ -146,18 +146,19 @@
 //                    })
 //                    
 //                }
-//            }
-//        }
-//    
-//
-//
-//struct AddingEvents_Previews: PreviewProvider {
-//    static var previews: some View {
+            }
+        }
+    
+
+
+struct AddingEvents_Previews: PreviewProvider {
+    static var previews: some View {
 //        let persistentContainer = CoreDataManager.shared.persistentContainer
-//        AddingEvents().environment(\.managedObjectContext, persistentContainer.viewContext)
-//        
-//    }
-//}
+        AddingEvents()
+//            .environment(\.managedObjectContext, persistentContainer.viewContext)
+        
+    }
+}
 //extension Date {
 //   func getFormattedDate(format: String) -> String {
 //        let dateformat = DateFormatter()

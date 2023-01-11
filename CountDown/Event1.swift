@@ -272,10 +272,14 @@ press_Add_to_add_a_new_event
                             ForEach(allEvents) { event in
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 13)
-                                        .stroke(theSelectedColor(event.thecolor!), lineWidth: 5)
+                                        .fill(theSelectedColor(event.thecolor!))
+                                        .opacity(0.1)
                                         .frame(height: 120)
-                                        .ignoresSafeArea()
-                                        .shadow(radius: 3)
+                                        .shadow(radius: 2, x: 5)
+                                    RoundedRectangle(cornerRadius: 13)
+                                        .stroke(theSelectedColor(event.thecolor!), lineWidth: 2)
+                                        .frame(height: 120)
+
                                     
                                     VStack(alignment: .leading){
                                         HStack(alignment: .top){
@@ -295,14 +299,7 @@ press_Add_to_add_a_new_event
                                             .font(.title)
                                             .padding(.top)
                                             .fontWeight(.bold)
-                                            .foregroundColor(theSelectedColor(event.thecolor!))
-                                        
-                                        //                                        HStack{
-                                        //                                            Text("days")
-                                        //                                            Text("hours")
-                                        //                                            Text("minutes")
-                                        //                                        }.font(.caption)
-                                        
+//                                            .foregroundColor(theSelectedColor(event.thecolor!))
                                     }
                                 }
                             }.onDelete(perform: deleteEvent)

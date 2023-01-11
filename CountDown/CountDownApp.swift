@@ -18,7 +18,6 @@ struct CountDownApp: App {
             NavigationView{
                 
                 LoadingView().environment(\.managedObjectContext, persistentContainer.viewContext)
-//                CircularTimer()
 //                OnbordingView()
 //                Event1().environment(\.managedObjectContext, persistentContainer.viewContext)
 //                CircularTimer()

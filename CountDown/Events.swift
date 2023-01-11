@@ -1,14 +1,14 @@
-////
-////  Events.swift
-////  CountDown
-////
-////  Created by Fatma Gazwani on 11/06/1444 AH.
-////
 //
-//import SwiftUI
-//import CoreData
+//  Events.swift
+//  CountDown
 //
+//  Created by Fatma Gazwani on 11/06/1444 AH.
 //
+
+import SwiftUI
+import CoreData
+
+
 //
 //enum pickerofcolor: String, Identifiable, CaseIterable {
 //    var id: UUID {
@@ -43,23 +43,23 @@
 //            return "Green"
 //        case .mint:
 //            return "Mint"
-//            
+//
 //        }
 //    }
 //}
 //
-//let duedate = Date()
-//let format = duedate.getFormattedDate(format: "yyyy-MM-dd") // Set output format
+////let duedate = Date()
+////let format = duedate.getFormattedDate(format: "yyyy-MM-dd") // Set output format
 //
-//struct Events: View {
+struct Events: View {
 //    @State private var name: String = ""
 //    @State private var theColor: TheColor = .blue
 //    @State private var duedate: String = ""
-//    
-//    
+//
+//
 //    @Environment(\.managedObjectContext) private var viewContext
 //    @FetchRequest(entity: Event.entity(), sortDescriptors: [NSSortDescriptor(key: "duedate", ascending: true)]) private var allEvents: FetchedResults<Event>
-//    
+//
 //    private func addEvent() {
 //        do {
 //            let event = Event(context: viewContext)
@@ -69,12 +69,12 @@
 //            try viewContext.save()
 //        }catch{
 //            print(error.localizedDescription)
-//            
+//
 //        }
 //    }
 //    private func theSelectedColor(_ value: String) -> Color{
 //        let  thecolor = TheColor(rawValue: value)
-//        
+//
 //        switch theColor {
 //        case .red:
 //            return Color.red
@@ -94,7 +94,7 @@
 //            return Color.mint
 //        }
 //    }
-//    
+//
 //    private func deleteEvent (at offsets: IndexSet) {
 //        offsets.forEach {
 //            index in
@@ -111,57 +111,58 @@
 //    //    @State private var date = Date()
 //    @State private var showsheet: Bool = false
 //    @State private var showingDetail = false
-//    
-//    var body: some View {
-//        
+//
+    var body: some View {
+        Text("Hi")
+        
 //        Group{
 //            ZStack{
-//                
+//
 //                if(allEvents.isEmpty) {
-//                    
+//
 //                    VStack {
-//                        
+//
 //                        HStack{
-//                            
+//
 //                            Spacer()
 //                            Button("Add") {
 //                                showingDetail = true
-//                                
+//
 //                                //                                AddingEvents()
 //                                //                                Dismiss()
 //                            }
 //                            .sheet(isPresented: $showingDetail) {
 //                                ScrollView{
-//                                    
-//                                    
+//
+//
 //                                    VStack {
-//                                        
+//
 //                                        DatePicker("Please enter a date", selection: $dueDate)
 //                                            .padding([.leading, .bottom, .trailing])
 //                                            .labelsHidden()
 //                                            .datePickerStyle(.graphical)
-//                                        
-//                                        
+//
+//
 //                                        VStack(alignment: .leading){
 //                                            Text("Event Name:")
 //                                                .font(.title3)
 //                                                .fontWeight(.semibold)
 //                                            TextField("Event Name", text: $name)
 //                                                .textFieldStyle(.roundedBorder)
-//                                            
-//                                            
+//
+//
 //                                        }.padding()
-//                                        
+//
 //                                        Picker("Pick a color for the event borders", selection: $theColor) {
 //                                            ForEach(TheColor.allCases) { thecolor in
 //                                                Text(thecolor.title).tag(thecolor)
 //                                                    .fontWeight(.bold)
-//                                                
+//
 //                                            }.pickerStyle(.segmented)
 //                                        }.padding()
 //                                        Button (action: {
 //                                            addEvent()
-//                                            
+//
 //                                        }, label: {
 //                                            Text("Add Event")
 //                                                .font(.title3)
@@ -172,7 +173,7 @@
 //                                                .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
 //                                        })
 ////                                        DismissingView()
-//                                        
+//
 //                                    }
 //                                }
 //                                .frame(height: 20)
@@ -196,11 +197,11 @@
 //                                .font(.title2)
 //                                .foregroundColor(.gray)
 //                                .multilineTextAlignment(.center)
-//                                
+//
 //                            }
-//                        
+//
 //                        }else {
-//                            
+//
 //                            VStack(alignment: .trailing){
 //                                HStack(alignment: .top){
 //                                    Spacer()
@@ -209,36 +210,36 @@
 //                                    }
 //                                    .sheet(isPresented: $showingDetail) {
 //                                        ScrollView{
-//                                            
-//                                            
+//
+//
 //                                            VStack {
-//                                                
+//
 //                                                DatePicker("Please enter a date", selection: $dueDate)
 //                                                    .padding([.leading, .bottom, .trailing])
 //                                                    .labelsHidden()
 //                                                    .datePickerStyle(.graphical)
-//                                                
-//                                                
+//
+//
 //                                                VStack(alignment: .leading){
 //                                                    Text("Event Name:")
 //                                                        .font(.title3)
 //                                                        .fontWeight(.semibold)
 //                                                    TextField("Event Name", text: $name)
 //                                                        .textFieldStyle(.roundedBorder)
-//                                                    
-//                                                    
+//
+//
 //                                                }.padding()
-//                                                
+//
 //                                                Picker("Pick a color for the event borders", selection: $theColor) {
 //                                                    ForEach(TheColor.allCases) { thecolor in
 //                                                        Text(thecolor.title).tag(thecolor)
 //                                                            .fontWeight(.bold)
-//                                                        
+//
 //                                                    }.pickerStyle(.segmented)
 //                                                }.padding()
 //                                                Button (action: {
 //                                                    addEvent()
-//                                                    
+//
 //                                                }, label: {
 //                                                    Text("Add Event")
 //                                                        .font(.title3)
@@ -249,11 +250,11 @@
 //                                                        .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
 //                                                })
 //                                                //                                        DismissingView()
-//                                                
+//
 //                                            }
 //                                        }
-//                                        
-//                                        
+//
+//
 //                                    }
 //                                    .frame(height: 20)
 //                                    .padding(.top)
@@ -269,13 +270,13 @@
 //                                                .stroke(theSelectedColor(event.thecolor!), lineWidth: 5)
 //                                                .frame(height: 120)
 //                                                .ignoresSafeArea()
-//                                            
+//
 //                                            VStack(alignment: .leading){
 //                                                HStack(alignment: .top){
 //                                                    Text(event.name ?? "")
 //                                                    Text("-")
 //                                                    Text(dueDate, style:.date) // 47:59:50
-//                                                    
+//
 //                                                    Spacer()
 //                                                }.padding(.horizontal)
 //                                                    .font(.caption)
@@ -290,13 +291,13 @@
 //                                                    .padding(.top)
 //                                                    .fontWeight(.bold)
 //                                                    .foregroundColor(theSelectedColor(event.thecolor!))
-//                                                
+//
 //                                                HStack{
 //                                                    Text("days")
 //                                                    Text("hours")
 //                                                    Text("minutes")
 //                                                }.font(.caption)
-//                                                
+//
 //                                            }
 //                                        }
 //                                    }.onDelete(perform: deleteEvent)
@@ -305,15 +306,16 @@
 //                        }
 //                    }
 //                }
-//            }
-//        }
-//    
-//
-//struct Events_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let persistentContainer = CoreDataManager.shared.persistentContainer
-//        Events().environment(\.managedObjectContext, persistentContainer.viewContext)
-//    }
-//}
-//
-//
+            }
+        }
+    
+
+struct Events_Previews: PreviewProvider {
+    static var previews: some View {
+        let persistentContainer = CoreDataManager.shared.persistentContainer
+        Events()
+//            .environment(\.managedObjectContext, persistentContainer.viewContext)
+    }
+}
+
+
