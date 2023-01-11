@@ -12,14 +12,14 @@ enum BordersColor: String, Identifiable, CaseIterable {
     var id: UUID {
         return UUID()
     }
-    case red = "Red"
-    case yellow = "Yellow"
-    case orange = "Orange"
-    case purple = "Purple"
-    case blue = "Blue"
-    case indigo = "Indigo"
-    case green = "Green"
-    case mint = "Mint"
+    case red = "red"
+    case yellow = "yellow"
+    case orange = "orange"
+    case purple = "purple"
+    case blue = "blue"
+    case indigo = "indigo"
+    case green = "green"
+    case mint = "mint"
 }
 
 extension BordersColor {
@@ -52,27 +52,25 @@ struct Event1: View {
     @State private var name: String = ""
     @State private var ColorsPickers: BordersColor = .blue
     @State private var duedate: String = ""
-    
-    
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: Event.entity(), sortDescriptors: [NSSortDescriptor(key: "duedate", ascending: true)]) private var allEvents: FetchedResults<Event>
     
     private func addEvent() {
+        print(allEvents)
         do {
             let event = Event(context: viewContext)
             event.name = name
             event.thecolor = ColorsPickers.rawValue
-            event.duedate = Date()
+            event.duedate = dueDate
             try viewContext.save()
         }catch{
             print(error.localizedDescription)
-            
         }
     }
     private func theSelectedColor(_ value: String) -> Color{
         let  thecolor = BordersColor(rawValue: value)
         
-        switch ColorsPickers {
+        switch thecolor {
         case .red:
             return Color.red
         case .yellow:
@@ -89,6 +87,8 @@ struct Event1: View {
             return Color.green
         case .mint:
             return Color.mint
+        case .none:
+            return Color.blue
         }
     }
     
@@ -110,7 +110,7 @@ struct Event1: View {
     @State private var showsheet: Bool = false
     @State private var showingDetail = false
     @Environment(\.dismiss) var dismiss
-    
+    @State private var selectedColor: Color = .blue
     var body: some View {
         
         Group{
@@ -124,55 +124,63 @@ struct Event1: View {
                             Button("Add_") {
                                 showingDetail = true
                             }.accessibilityLabel("Add_a_new_event")
-                            .sheet(isPresented: $showingDetail) {
-                                ScrollView{
-                                    
-                                    
-                                    VStack {
-                                        
-                                        DatePicker("Please_choose_a_date", selection: $dueDate)
-                                            .accessibilityLabel("Please_choose_a_date")
-
-                                            .padding([.leading, .bottom, .trailing])
-                                            .labelsHidden()
-                                            .datePickerStyle(.graphical)
+                                .sheet(isPresented: $showingDetail) {
+                                    ScrollView{
                                         
                                         
-                                        VStack(alignment: .leading){
-                                            Text("Event_Name:")
-                                                .font(.title3)
-                                                .fontWeight(.semibold)
-                                            TextField("Event_Name", text: $name)
-                                                .accessibilityLabel("Enter_event_Name")
-                                                .textFieldStyle(.roundedBorder)
+                                        VStack{
+                                            
+                                            DatePicker("Please_choose_a_date", selection: $dueDate)
+                                                .accessibilityLabel("Please_choose_a_date")
+                                            
+                                                .padding([.leading, .bottom, .trailing])
+                                                .labelsHidden()
+                                                .datePickerStyle(.graphical)
                                             
                                             
-                                        }.padding()
-                                        Picker("Pick_a_color_for_the_event_borders", selection: $ColorsPickers) {
-                                            ForEach(BordersColor.allCases) { thecolor in
-                                                Text(thecolor.title).tag(thecolor)
-                                                    .fontWeight(.bold)
+                                            VStack(alignment: .leading){
+                                                Text("Event_Name:")
+                                                    .font(.title3)
+                                                    .fontWeight(.semibold)
+                                                TextField("Event_Name", text: $name)
+                                                    .accessibilityLabel("Enter_event_Name")
+                                                    .textFieldStyle(.roundedBorder)
                                                 
-                                            }.pickerStyle(.segmented)
-                                        }.padding()
-                                        Button (action: {
-                                            addEvent()
+                                                
+                                            }.padding()
                                             
-                                        }, label: {
-                                            Text("Add_Event")
-                                                .accessibilityLabel("Add_a_new_event")
-                                                .font(.title3)
-                                                .fontWeight(.semibold)
-                                                .padding (16.0)
-                                                .background(Color.accentColor)
-                                                .foregroundColor(.white)
-                                                .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
-                                        })
-                                        //                                        DismissingView()
-                                        
+//                                            MyColorPicker(selectedColor: $selectedColor)
+
+                                            Picker("Pick_a_color_for_the_event_borders", selection: $ColorsPickers) {
+                                                ForEach(BordersColor.allCases) { thecolor in
+                                                    Text(thecolor.title).tag(thecolor)
+                                                        .fontWeight(.bold)
+                                                    
+                                                }.pickerStyle(.segmented)
+                                            }.padding()
+                                            Notification()
+                                            Button (action: {
+                                                addEvent()
+                                                dismiss()
+                                                
+                                            }, label: {
+                                                Text("Add_Event")
+                                                    .accessibilityLabel("Add_a_new_event")
+                                                    .font(.title3)
+                                                    .fontWeight(.semibold)
+                                                    .padding (16.0)
+                                                    .background(Color.accentColor)
+                                                    .foregroundColor(.white)
+                                                    .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
+                                            })
+                                            
+                                            //                                        DismissingView()
+                                            
+                                        }
                                     }
                                 }
-                            }
+                            
+                            
                         }
                         .frame(height: 20)
                         .padding(.top)
@@ -206,62 +214,59 @@ press_Add_to_add_a_new_event
                             Button("Add_") {
                                 showingDetail = true
                             }.accessibilityLabel("Addـaـnewـevent")
-                            .sheet(isPresented: $showingDetail) {
-                                ScrollView{
-                                    
-                                    
-                                    VStack {
-                                        
-                                        DatePicker("Please_choose_a_date", selection: $dueDate)
-                                            .accessibilityLabel("Please_choose_a_date")
-                                            .padding([.leading, .bottom, .trailing])
-                                            .labelsHidden()
-                                            .datePickerStyle(.graphical)
+                                .sheet(isPresented: $showingDetail) {
+                                    ScrollView{
                                         
                                         
-                                        VStack(alignment: .leading){
-                                            Text("Event_Name:")
-                                                .font(.title3)
-                                                .fontWeight(.semibold)
-                                            TextField("Event_Name", text: $name)
-                                                .textFieldStyle(.roundedBorder)
-                                                .accessibilityLabel("Enter_event_Name")
+                                        VStack {
+                                            
+                                            DatePicker("Please_choose_a_date", selection: $dueDate)
+                                                .accessibilityLabel("Please_choose_a_date")
+                                                .padding([.leading, .bottom, .trailing])
+                                                .labelsHidden()
+                                                .datePickerStyle(.graphical)
                                             
                                             
-                                        }.padding()
-                                        
-                                        Picker("Pick_a_color_for_the_event_borders", selection: $ColorsPickers) {
-                                            ForEach(BordersColor.allCases) { thecolor in
-                                                Text(thecolor.title).tag(thecolor)
-                                                    .fontWeight(.bold)
+                                            VStack(alignment: .leading){
+                                                Text("Event_Name:")
+                                                    .font(.title3)
+                                                    .fontWeight(.semibold)
+                                                TextField("Event_Name", text: $name)
+                                                    .textFieldStyle(.roundedBorder)
+                                                    .accessibilityLabel("Enter_event_Name")
                                                 
-                                            }.pickerStyle(.segmented)
-                                        }.padding()
-                                        Button (action: {
-                                            addEvent()
-                                            //                                            dismiss()
+                                                
+                                            }.padding()
                                             
-                                        }, label: {
-                                            Text("Add_Event")
-                                                .accessibilityLabel("Add_a_new_event")
-                                                .font(.title3)
-                                                .fontWeight(.semibold)
-                                                .padding (16.0)
-                                                .background(Color.accentColor)
-                                                .foregroundColor(.white)
-                                                .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
-                                        })
-                                        
+                                            Picker("Pick_a_color_for_the_event_borders", selection: $ColorsPickers) {
+                                                ForEach(BordersColor.allCases) { thecolor in
+                                                    Text(thecolor.title).tag(thecolor)
+                                                        .fontWeight(.bold)
+                                                    
+                                                }.pickerStyle(.segmented)
+                                            }.padding()
+                                            Notification()
+                                            Button (action: {
+                                                addEvent()
+                                                
+                                            }, label: {
+                                                Text("Add_Event")
+                                                    .accessibilityLabel("Add_a_new_event")
+                                                    .font(.title3)
+                                                    .fontWeight(.semibold)
+                                                    .padding (16.0)
+                                                    .background(Color.accentColor)
+                                                    .foregroundColor(.white)
+                                                    .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
+                                            })
+                                        }
                                     }
                                 }
-                                
-                                
-                            }
-                            .frame(height: 20)
-                            .padding(.top)
-                            .padding(.horizontal, 24)
-                            .font(.title3)
-                            .foregroundColor(.accentColor)
+                                .frame(height: 20)
+                                .padding(.top)
+                                .padding(.horizontal, 24)
+                                .font(.title3)
+                                .foregroundColor(.accentColor)
                         }
                         List{
                             ForEach(allEvents) { event in
@@ -270,14 +275,13 @@ press_Add_to_add_a_new_event
                                         .stroke(theSelectedColor(event.thecolor!), lineWidth: 5)
                                         .frame(height: 120)
                                         .ignoresSafeArea()
+                                        .shadow(radius: 3)
                                     
                                     VStack(alignment: .leading){
                                         HStack(alignment: .top){
                                             Text(event.name ?? "")
-                                                
                                             Text("-")
-                                            Text(dueDate, style:.date)
-                                            
+                                            Text(event.duedate!, style:.date)
                                             Spacer()
                                         }.padding(.horizontal)
                                             .font(.caption)
@@ -287,24 +291,23 @@ press_Add_to_add_a_new_event
                                         Spacer()
                                     }.padding(.top)
                                     VStack{
-
-                                        Text(dueDate, style:.timer) // 47:59:50
+                                        Text(event.duedate!, style:.timer) // 47:59:50
                                             .font(.title)
                                             .padding(.top)
                                             .fontWeight(.bold)
                                             .foregroundColor(theSelectedColor(event.thecolor!))
                                         
-//                                        HStack{
-//                                            Text("days")
-//                                            Text("hours")
-//                                            Text("minutes")
-//                                        }.font(.caption)
+                                        //                                        HStack{
+                                        //                                            Text("days")
+                                        //                                            Text("hours")
+                                        //                                            Text("minutes")
+                                        //                                        }.font(.caption)
                                         
                                     }
                                 }
                             }.onDelete(perform: deleteEvent)
                         }.accessibilityLabel("Press_on_the_lists_to_view_their_information")
-                        .scrollContentBackground(.hidden)
+                            .scrollContentBackground(.hidden)
                         
                     }
                 }

@@ -48,8 +48,8 @@
 //    }
 //}
 //
-////let duedate = Date()
-////let format = duedate.getFormattedDate(format: "yyyy-MM-dd") // Set output format
+//let duedate = Date()
+//let format = duedate.getFormattedDate(format: "yyyy-MM-dd") // Set output format
 //
 //struct Events: View {
 //    @State private var name: String = ""

@@ -45,8 +45,8 @@
 //        }
 //    }
 //}
-//let duedate = Date()
-//let format = duedate.getFormattedDate(format: "yyyy-MM-dd") // Set output format
+////let duedate = Date()
+////let format = duedate.getFormattedDate(format: "yyyy-MM-dd") // Set output format
 //
 //struct AddingEvents: View {
 //    @State private var name: String = ""
@@ -95,9 +95,11 @@
 //    
 //    //    @State private var date = Date()
 //    @State private var dueDate = Date()
-//    @State private var showsheet: Bool = false
-//    @State private var showingDetail = false
+////    @State private var showsheet: Bool = false
+////    @State private var showingDetail = false
 //    @State private var selectedColor: Color = .blue
+//    @Environment(\.dismiss) var dismiss
+//
 //    
 //    var body: some View {
 //     
@@ -120,18 +122,19 @@
 //                        
 //                    }.padding()
 //                    
-//                    MyColorPicker(selectedColor: $selectedColor)
+////                    MyColorPicker(selectedColor: $selectedColor)
 //                    
-//                    //                Picker("Pick a color for the event borders", selection: $theColor) {
-//                    //                    ForEach(TheColor.allCases) { thecolor in
-//                    //                        Text(thecolor.title).tag(thecolor)
-//                    //                            .fontWeight(.bold)
-//                    //                    }.pickerStyle(.segmented)
-//                    //                }.padding()
+//                                    Picker("Pick a color for the event borders", selection: $theColor) {
+//                                        ForEach(TheColor.allCases) { thecolor in
+//                                            Text(thecolor.title).tag(thecolor)
+//                                                .fontWeight(.bold)
+//                                        }.pickerStyle(.segmented)
+//                                    }.padding()
 //                    
 //                    Button (action: {
 //                        addEvent()
-//                        
+//                        dismiss()
+//
 //                    }, label: {
 //                        Text("Add Event")
 //                            .font(.title3)

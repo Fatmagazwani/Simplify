@@ -11,7 +11,6 @@ import UserNotifications
 class NotificationManager{
     static let instance = NotificationManager()
     
-    
     func scheduleNotification(hour: Int,minute: Int){
         
         let center = UNUserNotificationCenter.current()
@@ -21,8 +20,8 @@ class NotificationManager{
             guard error != nil else { return }
         }
         let content = UNMutableNotificationContent()
-        content.title = "تذكير بموعد الدواء"
-        content.subtitle = "حان وقت الدواء  "
+        content.title = "Event_reminder"
+        content.subtitle = "It's_time_for_your_event"
         content.sound = .default
         content.badge = 0
         
@@ -39,31 +38,24 @@ class NotificationManager{
 struct Notification: View {
     @State var selectedDate: Date = Date()
     var body: some View {
-        VStack (spacing : 40) {
-            DatePicker("Notification Time" , selection: $selectedDate)
-                .padding()
+        VStack (spacing : 20) {
+            DatePicker("Alert_" , selection: $selectedDate)
+                .padding(.horizontal)
             
-            
-            Button("Schedule Notification"){
+            Button("Alert_Me"){
                 let components = Calendar.current.dateComponents([.hour , .minute], from: selectedDate)
                 
-               // print(selectedDate)
                 let hours = components.hour ?? 0
                 let minute = components.minute ?? 0
-               // print(hours)
-               // print(minute)
-                
+
                 NotificationManager.instance.scheduleNotification(hour: hours, minute: minute)
-                
             }
-        }
+        }.padding(.horizontal)
         .onAppear{
             UIApplication.shared.applicationIconBadgeNumber = 0
         }
-        
     }
 }
-
 struct Notification_Previews: PreviewProvider {
     static var previews: some View {
         Notification()
