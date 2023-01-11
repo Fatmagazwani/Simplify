@@ -114,11 +114,11 @@ struct Event1: View {
     @Environment(\.dismiss) var dismiss
     @State private var selectedColor: Color = .blue
     
-    
     @StateObject var vm = CoreDataViewModel()
     @State var titleName : String = ""
     @State var selectedDate : Date = Date()
-    
+    let notify = NotificationModel()
+
     var body: some View {
         
         Group{

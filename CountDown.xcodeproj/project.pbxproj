@@ -147,7 +147,7 @@
 				ADC19E7A296AA1620089478B /* CountDownDebug.entitlements */,
 				AD6BBBF4296A3E570052C4BC /* CountDown.entitlements */,
 				AD349EBD29656A430058BE59 /* CountDownApp.swift */,
-				AD8B1750296F637500721423 /* VIews */,
+				AD8B1750296F637500721423 /* Views */,
 				AD8B174F296F635A00721423 /* ViewModels */,
 				AD349EC829656A440058BE59 /* CountDownData.xcdatamodeld */,
 				AD349F05296A2EBB0058BE59 /* Localizable.strings */,
@@ -198,7 +198,7 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		AD8B1750296F637500721423 /* VIews */ = {
+		AD8B1750296F637500721423 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				AD349EBF29656A430058BE59 /* Event1.swift */,
@@ -212,7 +212,7 @@
 				ADC19E83296D7D370089478B /* Notification.swift */,
 				AD8B1753296F66D500721423 /* NotificationView.swift */,
 			);
-			path = VIews;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

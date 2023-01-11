@@ -25,7 +25,7 @@ class CoreDataViewModel : ObservableObject {
                 print("Error loading Core Data : \(error)")
             } else {
                 // this else statement can be removed once the core data is loaded successfully.
-//                print("Successfully loaded Core Data!")
+                print("Successfully loaded Core Data!")
             }
         }
         
