@@ -29,6 +29,11 @@
 		AD349F3E296A329A0058BE59 /* CountDownWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AD349F29296A329A0058BE59 /* CountDownWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AD349F42296A37570058BE59 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD349EC429656A440058BE59 /* Preview Assets.xcassets */; };
 		AD6BBBF3296A39DC0052C4BC /* CountDownWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD349F34296A329A0058BE59 /* CountDownWidget.swift */; };
+		AD8B174A296F268600721423 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B1749296F268600721423 /* NotificationModel.swift */; };
+		AD8B174C296F2D3E00721423 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B174B296F2D3E00721423 /* EmptyView.swift */; };
+		AD8B174E296F329600721423 /* EventsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B174D296F329600721423 /* EventsList.swift */; };
+		AD8B1752296F656A00721423 /* DateFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B1751296F656A00721423 /* DateFile.swift */; };
+		AD8B1754296F66D500721423 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B1753296F66D500721423 /* NotificationView.swift */; };
 		ADC19E84296D7D370089478B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E83296D7D370089478B /* Notification.swift */; };
 		ADC19E93296DDFA10089478B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E92296DDFA10089478B /* ViewController.swift */; };
 		ADC19E95296EE4380089478B /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E94296EE4380089478B /* ContentView-ViewModel.swift */; };
@@ -84,6 +89,11 @@
 		AD6BBBF4296A3E570052C4BC /* CountDown.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CountDown.entitlements; sourceTree = "<group>"; };
 		AD6BBBF5296A3E6B0052C4BC /* CountDownWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CountDownWidgetExtension.entitlements; sourceTree = "<group>"; };
 		AD6BBBF6296A3FA30052C4BC /* CountDownWidgetExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CountDownWidgetExtensionDebug.entitlements; sourceTree = "<group>"; };
+		AD8B1749296F268600721423 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		AD8B174B296F2D3E00721423 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		AD8B174D296F329600721423 /* EventsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsList.swift; sourceTree = "<group>"; };
+		AD8B1751296F656A00721423 /* DateFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFile.swift; sourceTree = "<group>"; };
+		AD8B1753296F66D500721423 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		ADC19E7A296AA1620089478B /* CountDownDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CountDownDebug.entitlements; sourceTree = "<group>"; };
 		ADC19E83296D7D370089478B /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		ADC19E92296DDFA10089478B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -136,18 +146,9 @@
 			children = (
 				ADC19E7A296AA1620089478B /* CountDownDebug.entitlements */,
 				AD6BBBF4296A3E570052C4BC /* CountDown.entitlements */,
-				ADC19E94296EE4380089478B /* ContentView-ViewModel.swift */,
 				AD349EBD29656A430058BE59 /* CountDownApp.swift */,
-				AD349EBF29656A430058BE59 /* Event1.swift */,
-				AD349EF7296600680058BE59 /* Events.swift */,
-				AD349EDB2965BBD50058BE59 /* AddingEvents.swift */,
-				AD349EFB296865560058BE59 /* LoadingView.swift */,
-				AD349EFD296865690058BE59 /* OnbordingView.swift */,
-				AD349EFF296867C40058BE59 /* SingleOnbordingView.swift */,
-				ADC19E83296D7D370089478B /* Notification.swift */,
-				AD349ED229656EAD0058BE59 /* MyColorPicker.swift */,
-				AD349EC629656A440058BE59 /* CoreDataManager.swift */,
-				ADC19E92296DDFA10089478B /* ViewController.swift */,
+				AD8B1750296F637500721423 /* VIews */,
+				AD8B174F296F635A00721423 /* ViewModels */,
 				AD349EC829656A440058BE59 /* CountDownData.xcdatamodeld */,
 				AD349F05296A2EBB0058BE59 /* Localizable.strings */,
 				AD349EC329656A440058BE59 /* Preview Content */,
@@ -182,6 +183,36 @@
 				AD349F39296A329A0058BE59 /* Info.plist */,
 			);
 			path = CountDownWidget;
+			sourceTree = "<group>";
+		};
+		AD8B174F296F635A00721423 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				ADC19E94296EE4380089478B /* ContentView-ViewModel.swift */,
+				AD8B1749296F268600721423 /* NotificationModel.swift */,
+				AD8B1751296F656A00721423 /* DateFile.swift */,
+				AD349ED229656EAD0058BE59 /* MyColorPicker.swift */,
+				AD349EC629656A440058BE59 /* CoreDataManager.swift */,
+				ADC19E92296DDFA10089478B /* ViewController.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AD8B1750296F637500721423 /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				AD349EBF29656A430058BE59 /* Event1.swift */,
+				AD8B174B296F2D3E00721423 /* EmptyView.swift */,
+				AD349EF7296600680058BE59 /* Events.swift */,
+				AD8B174D296F329600721423 /* EventsList.swift */,
+				AD349EDB2965BBD50058BE59 /* AddingEvents.swift */,
+				AD349EFB296865560058BE59 /* LoadingView.swift */,
+				AD349EFD296865690058BE59 /* OnbordingView.swift */,
+				AD349EFF296867C40058BE59 /* SingleOnbordingView.swift */,
+				ADC19E83296D7D370089478B /* Notification.swift */,
+				AD8B1753296F66D500721423 /* NotificationView.swift */,
+			);
+			path = VIews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,14 +324,19 @@
 				AD349F3B296A329A0058BE59 /* CountDownWidget.intentdefinition in Sources */,
 				ADC19E95296EE4380089478B /* ContentView-ViewModel.swift in Sources */,
 				AD349ED329656EAD0058BE59 /* MyColorPicker.swift in Sources */,
+				AD8B174C296F2D3E00721423 /* EmptyView.swift in Sources */,
 				AD6BBBF3296A39DC0052C4BC /* CountDownWidget.swift in Sources */,
+				AD8B1752296F656A00721423 /* DateFile.swift in Sources */,
 				ADC19E93296DDFA10089478B /* ViewController.swift in Sources */,
 				AD349EC029656A430058BE59 /* Event1.swift in Sources */,
+				AD8B174A296F268600721423 /* NotificationModel.swift in Sources */,
 				AD349EBE29656A430058BE59 /* CountDownApp.swift in Sources */,
 				AD349EF8296600680058BE59 /* Events.swift in Sources */,
 				ADC19E84296D7D370089478B /* Notification.swift in Sources */,
 				AD349EDC2965BBD50058BE59 /* AddingEvents.swift in Sources */,
+				AD8B174E296F329600721423 /* EventsList.swift in Sources */,
 				AD349ECA29656A440058BE59 /* CountDownData.xcdatamodeld in Sources */,
+				AD8B1754296F66D500721423 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

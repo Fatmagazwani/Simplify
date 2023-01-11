@@ -7,6 +7,8 @@
 
 import SwiftUI
 import CoreData
+import UserNotifications
+
 
 enum BordersColor: String, Identifiable, CaseIterable {
     var id: UUID {
@@ -111,28 +113,33 @@ struct Event1: View {
     @State private var showingDetail = false
     @Environment(\.dismiss) var dismiss
     @State private var selectedColor: Color = .blue
+    
+    
+    @StateObject var vm = CoreDataViewModel()
+    @State var titleName : String = ""
+    @State var selectedDate : Date = Date()
+    
     var body: some View {
         
         Group{
+            
             ZStack{
                 
                 if(allEvents.isEmpty) {
-                    
                     VStack(alignment: .trailing){
                         HStack(alignment: .top){
                             Spacer()
                             Button("Add_") {
                                 showingDetail = true
-                            }.accessibilityLabel("Add_a_new_event")
+                            }.accessibilityLabel("Addـaـnewـevent")
                                 .sheet(isPresented: $showingDetail) {
                                     ScrollView{
                                         
                                         
-                                        VStack{
+                                        VStack {
                                             
                                             DatePicker("Please_choose_a_date", selection: $dueDate)
                                                 .accessibilityLabel("Please_choose_a_date")
-                                            
                                                 .padding([.leading, .bottom, .trailing])
                                                 .labelsHidden()
                                                 .datePickerStyle(.graphical)
@@ -143,14 +150,12 @@ struct Event1: View {
                                                     .font(.title3)
                                                     .fontWeight(.semibold)
                                                 TextField("Event_Name", text: $name)
-                                                    .accessibilityLabel("Enter_event_Name")
                                                     .textFieldStyle(.roundedBorder)
+                                                    .accessibilityLabel("Enter_event_Name")
                                                 
                                                 
                                             }.padding()
                                             
-//                                            MyColorPicker(selectedColor: $selectedColor)
-
                                             Picker("Pick_a_color_for_the_event_borders", selection: $ColorsPickers) {
                                                 ForEach(BordersColor.allCases) { thecolor in
                                                     Text(thecolor.title).tag(thecolor)
@@ -158,10 +163,26 @@ struct Event1: View {
                                                     
                                                 }.pickerStyle(.segmented)
                                             }.padding()
+                                            
                                             Notification()
+                                            
+//                                            Button {
+//                                                guard !titleName.isEmpty else { return }
+//
+//                                                notify.askPermission()
+//                                                vm.addReminder(title: $name, date: $dueDate)
+//                                                vm.fetchReminders()
+//
+//                                            } label: {
+//                                                Text("Alert_")
+//                                                    .font(.headline)
+//                                                    .foregroundColor(.black)
+//                                                    .frame(height: 40)
+//                                                    .frame(maxWidth: .infinity)
+//                                            }
+                                            
                                             Button (action: {
                                                 addEvent()
-                                                dismiss()
                                                 
                                             }, label: {
                                                 Text("Add_Event")
@@ -172,41 +193,52 @@ struct Event1: View {
                                                     .background(Color.accentColor)
                                                     .foregroundColor(.white)
                                                     .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
-                                            })
-                                            
-                                            //                                        DismissingView()
-                                            
+                                            }).onTapGesture {
+                                                dismiss()
+                                            }
                                         }
                                     }
                                 }
-                            
-                            
+                                .frame(height: 20)
+                                .padding(.top)
+                                .padding(.horizontal, 24)
+                                .font(.title3)
+                                .foregroundColor(.accentColor)
                         }
-                        .frame(height: 20)
-                        .padding(.top)
-                        .padding(.horizontal, 24)
-                        .font(.title3)
-                        .foregroundColor(.accentColor)
+//                    VStack{
+//                        HStack(alignment: .top){
+//                            Spacer()
+//                            Button{
+//                                AddingEvents()
+//                            } label: {
+//                                Text("Add_")
+//                            }
+//
+//
+//                        }
                         Spacer()
-                    }
-                    VStack{
-                        Text("No_Eevnts_Yet")
-                            .font(.largeTitle)
-                            .foregroundColor(.gray)
-                        Text("""
-press_Add_to_add_a_new_event
-""")
-                        .font(.title2)
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
-                        .accessibilityLabel("Add_a_new_event_from_the_Button_at_the_top_right")
                         
+                    }.padding()
+                        VStack(alignment: .center){
+                            EmptyView()
+                        }
                         
-                    }
-                    
                     
                 } else {
                     
+//                    VStack{
+//                        HStack(alignment: .top){
+//                            Spacer()
+//                            Button{
+//                                AddingEvents()
+//                            } label: {
+//                                Text("Add_")
+//                            }
+//
+//
+//                        }
+//                        Spacer()
+//                    }.padding()
                     
                     VStack(alignment: .trailing){
                         HStack(alignment: .top){
@@ -268,6 +300,7 @@ press_Add_to_add_a_new_event
                                 .font(.title3)
                                 .foregroundColor(.accentColor)
                         }
+//                        EventsList()
                         List{
                             ForEach(allEvents) { event in
                                 ZStack{
@@ -280,7 +313,7 @@ press_Add_to_add_a_new_event
                                         .stroke(theSelectedColor(event.thecolor!), lineWidth: 2)
                                         .frame(height: 120)
 
-                                    
+
                                     VStack(alignment: .leading){
                                         HStack(alignment: .top){
                                             Text(event.name ?? "")
@@ -328,3 +361,5 @@ extension Date {
         return dateformat.string(from: self)
     }
 }
+
+

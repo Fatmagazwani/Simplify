@@ -8,6 +8,7 @@
 import SwiftUI
 import UserNotifications
 
+
 class NotificationManager{
     static let instance = NotificationManager()
     
