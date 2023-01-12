@@ -33,7 +33,7 @@ event/deadlines so that it makes their life easier .
 * Git Hub
 <hr>
 
-## Wireframe FIGMA Link:
+## Wireframe FIGMA Link :
 [Figma](https://www.figma.com/file/B4APASkgG6SenD5jMqyqCL/Untitled?node-id=4%3A4&t=HySUrgLD2oqBNrt5-1)
 <hr>
 
@@ -47,5 +47,5 @@ event/deadlines so that it makes their life easier .
 3. Multilingual - Arabic , English .
 <hr>
 
-# Demo : 
+# Demo Link : 
 [Demo](https://files.fm/u/khseb4anp)
