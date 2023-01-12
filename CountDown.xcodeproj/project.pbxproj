@@ -29,11 +29,11 @@
 		AD349F3E296A329A0058BE59 /* CountDownWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AD349F29296A329A0058BE59 /* CountDownWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AD349F42296A37570058BE59 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD349EC429656A440058BE59 /* Preview Assets.xcassets */; };
 		AD6BBBF3296A39DC0052C4BC /* CountDownWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD349F34296A329A0058BE59 /* CountDownWidget.swift */; };
-		AD8B174A296F268600721423 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B1749296F268600721423 /* NotificationModel.swift */; };
 		AD8B174C296F2D3E00721423 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B174B296F2D3E00721423 /* EmptyView.swift */; };
 		AD8B174E296F329600721423 /* EventsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B174D296F329600721423 /* EventsList.swift */; };
 		AD8B1752296F656A00721423 /* DateFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B1751296F656A00721423 /* DateFile.swift */; };
 		AD8B1754296F66D500721423 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B1753296F66D500721423 /* NotificationView.swift */; };
+		AD8B1755296F811600721423 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B1749296F268600721423 /* NotificationModel.swift */; };
 		ADC19E84296D7D370089478B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E83296D7D370089478B /* Notification.swift */; };
 		ADC19E93296DDFA10089478B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E92296DDFA10089478B /* ViewController.swift */; };
 		ADC19E95296EE4380089478B /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E94296EE4380089478B /* ContentView-ViewModel.swift */; };
@@ -329,13 +329,13 @@
 				AD8B1752296F656A00721423 /* DateFile.swift in Sources */,
 				ADC19E93296DDFA10089478B /* ViewController.swift in Sources */,
 				AD349EC029656A430058BE59 /* Event1.swift in Sources */,
-				AD8B174A296F268600721423 /* NotificationModel.swift in Sources */,
 				AD349EBE29656A430058BE59 /* CountDownApp.swift in Sources */,
 				AD349EF8296600680058BE59 /* Events.swift in Sources */,
 				ADC19E84296D7D370089478B /* Notification.swift in Sources */,
 				AD349EDC2965BBD50058BE59 /* AddingEvents.swift in Sources */,
 				AD8B174E296F329600721423 /* EventsList.swift in Sources */,
 				AD349ECA29656A440058BE59 /* CountDownData.xcdatamodeld in Sources */,
+				AD8B1755296F811600721423 /* NotificationModel.swift in Sources */,
 				AD8B1754296F66D500721423 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

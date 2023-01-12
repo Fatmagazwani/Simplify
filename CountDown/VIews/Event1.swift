@@ -118,7 +118,7 @@ struct Event1: View {
     @State var titleName : String = ""
     @State var selectedDate : Date = Date()
     let notify = NotificationModel()
-
+    
     var body: some View {
         
         Group{
@@ -162,24 +162,24 @@ struct Event1: View {
                                                         .fontWeight(.bold)
                                                     
                                                 }.pickerStyle(.segmented)
-                                            }.padding()
+                                            }.padding(.horizontal)
                                             
-                                            Notification()
+                                            //                                            Notification()
                                             
-//                                            Button {
-//                                                guard !titleName.isEmpty else { return }
-//
-//                                                notify.askPermission()
-//                                                vm.addReminder(title: $name, date: $dueDate)
-//                                                vm.fetchReminders()
-//
-//                                            } label: {
-//                                                Text("Alert_")
-//                                                    .font(.headline)
-//                                                    .foregroundColor(.black)
-//                                                    .frame(height: 40)
-//                                                    .frame(maxWidth: .infinity)
-//                                            }
+                                            Button {
+                                                guard !titleName.isEmpty else { return }
+                                                
+                                                notify.askPermission()
+                                                vm.addReminder(title: titleName, date: selectedDate)
+                                                vm.fetchReminders()
+                                                
+                                            } label: {
+                                                Text("Alert_")
+                                                    .font(.headline)
+                                                    .foregroundColor(.black)
+                                                    .frame(height: 40)
+                                                    .frame(maxWidth: .infinity)
+                                            }
                                             
                                             Button (action: {
                                                 addEvent()
@@ -205,40 +205,40 @@ struct Event1: View {
                                 .font(.title3)
                                 .foregroundColor(.accentColor)
                         }
-//                    VStack{
-//                        HStack(alignment: .top){
-//                            Spacer()
-//                            Button{
-//                                AddingEvents()
-//                            } label: {
-//                                Text("Add_")
-//                            }
-//
-//
-//                        }
+                        //                    VStack{
+                        //                        HStack(alignment: .top){
+                        //                            Spacer()
+                        //                            Button{
+                        //                                AddingEvents()
+                        //                            } label: {
+                        //                                Text("Add_")
+                        //                            }
+                        //
+                        //
+                        //                        }
                         Spacer()
                         
                     }.padding()
-                        VStack(alignment: .center){
-                            EmptyView()
-                        }
-                        
+                    VStack(alignment: .center){
+                        EmptyView()
+                    }
+                    
                     
                 } else {
                     
-//                    VStack{
-//                        HStack(alignment: .top){
-//                            Spacer()
-//                            Button{
-//                                AddingEvents()
-//                            } label: {
-//                                Text("Add_")
-//                            }
-//
-//
-//                        }
-//                        Spacer()
-//                    }.padding()
+                    //                    VStack{
+                    //                        HStack(alignment: .top){
+                    //                            Spacer()
+                    //                            Button{
+                    //                                AddingEvents()
+                    //                            } label: {
+                    //                                Text("Add_")
+                    //                            }
+                    //
+                    //
+                    //                        }
+                    //                        Spacer()
+                    //                    }.padding()
                     
                     VStack(alignment: .trailing){
                         HStack(alignment: .top){
@@ -300,7 +300,7 @@ struct Event1: View {
                                 .font(.title3)
                                 .foregroundColor(.accentColor)
                         }
-//                        EventsList()
+                        //                        EventsList()
                         List{
                             ForEach(allEvents) { event in
                                 ZStack{
@@ -312,8 +312,8 @@ struct Event1: View {
                                     RoundedRectangle(cornerRadius: 13)
                                         .stroke(theSelectedColor(event.thecolor!), lineWidth: 2)
                                         .frame(height: 120)
-
-
+                                    
+                                    
                                     VStack(alignment: .leading){
                                         HStack(alignment: .top){
                                             Text(event.name ?? "")
@@ -324,15 +324,17 @@ struct Event1: View {
                                             .font(.caption)
                                             .fontWeight(.semibold)
                                             .foregroundColor(Color("Black"))
-
+                                        
                                         Spacer()
                                     }.padding(.top)
                                     VStack{
-                                        Text(event.duedate!, style:.timer) // 47:59:50
+                                        Text(event.duedate!, style:.timer)
+                                        // 47:59:50
                                             .font(.title)
                                             .padding(.top)
                                             .fontWeight(.bold)
-//                                            .foregroundColor(theSelectedColor(event.thecolor!))
+
+                                        //                                            .foregroundColor(theSelectedColor(event.thecolor!))
                                     }
                                 }
                             }.onDelete(perform: deleteEvent)
@@ -344,6 +346,7 @@ struct Event1: View {
             }
         }
     }
+    
 }
 
 

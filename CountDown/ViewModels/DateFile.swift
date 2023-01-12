@@ -19,7 +19,7 @@ class CoreDataViewModel : ObservableObject {
     init() {
         // loading the container inside init and printing the error
         // provide the name of the container
-        container = NSPersistentContainer(name: "ReminderContainer")
+        container = NSPersistentContainer(name: "CountDownData")
         container.loadPersistentStores { description, error in
             if let error = error {
                 print("Error loading Core Data : \(error)")
@@ -34,7 +34,7 @@ class CoreDataViewModel : ObservableObject {
     
     func fetchReminders(){
         
-        let request = NSFetchRequest<Event>(entityName: "ReminderEntity")
+        let request = NSFetchRequest<Event>(entityName: "Event")
 
         do{
             savedEntities = try container.viewContext.fetch(request)
