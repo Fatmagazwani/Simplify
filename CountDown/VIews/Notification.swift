@@ -21,8 +21,8 @@ class NotificationManager{
             guard error != nil else { return }
         }
         let content = UNMutableNotificationContent()
-        content.title = "Event_reminder"
-        content.subtitle = "It's_time_for_your_event"
+        content.title = "Event reminder"
+        content.subtitle = "It's time for your event"
         content.sound = .default
         content.badge = 0
         

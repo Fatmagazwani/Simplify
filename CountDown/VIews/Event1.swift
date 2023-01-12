@@ -113,11 +113,11 @@ struct Event1: View {
     @State private var showingDetail = false
     @Environment(\.dismiss) var dismiss
     @State private var selectedColor: Color = .blue
-    
-    @StateObject var vm = CoreDataViewModel()
-    @State var titleName : String = ""
-    @State var selectedDate : Date = Date()
-    let notify = NotificationModel()
+    //
+    //    @StateObject var vm = CoreDataViewModel()
+    //    @State var titleName : String = ""
+    //    @State var selectedDate : Date = Date()
+    //    let notify = NotificationModel()
     
     var body: some View {
         
@@ -125,119 +125,101 @@ struct Event1: View {
             
             ZStack{
                 
-                if(allEvents.isEmpty) {
-                    VStack(alignment: .trailing){
-                        HStack(alignment: .top){
-                            Spacer()
-                            Button("Add_") {
-                                showingDetail = true
-                            }.accessibilityLabel("Addـaـnewـevent")
-                                .sheet(isPresented: $showingDetail) {
-                                    ScrollView{
+                //                    VStack{
+                //                        HStack(alignment: .top){
+                //                            Spacer()
+                //                            Button{
+                //                                AddingEvents()
+                //                            } label: {
+                //                                Text("Add_")
+                //                            }
+                //
+                //
+                //                        }
+                //                        Spacer()
+                //                    }.padding()
+                
+                VStack(alignment: .trailing){
+                    HStack(alignment: .top){
+                        Spacer()
+                        Button("Add_") {
+                            showingDetail = true
+                        }.accessibilityLabel("Addـaـnewـevent")
+                            .sheet(isPresented: $showingDetail) {
+                                ScrollView{
+                                    
+                                    
+                                    VStack {
+                                        
+                                        DatePicker("Please_choose_a_date", selection: $dueDate)
+                                            .accessibilityLabel("Please_choose_a_date")
+                                            .padding([.leading, .bottom, .trailing])
+                                            .labelsHidden()
+                                            .datePickerStyle(.graphical)
                                         
                                         
-                                        VStack {
+                                        VStack(alignment: .leading){
+                                            Text("Event_Name:")
+                                                .font(.title3)
+                                                .fontWeight(.semibold)
+                                            TextField("Event_Name", text: $name)
+                                                .textFieldStyle(.roundedBorder)
+                                                .accessibilityLabel("Enter_event_Name")
                                             
-                                            DatePicker("Please_choose_a_date", selection: $dueDate)
-                                                .accessibilityLabel("Please_choose_a_date")
-                                                .padding([.leading, .bottom, .trailing])
-                                                .labelsHidden()
-                                                .datePickerStyle(.graphical)
                                             
-                                            
-                                            VStack(alignment: .leading){
-                                                Text("Event_Name:")
-                                                    .font(.title3)
-                                                    .fontWeight(.semibold)
-                                                TextField("Event_Name", text: $name)
-                                                    .textFieldStyle(.roundedBorder)
-                                                    .accessibilityLabel("Enter_event_Name")
+                                        }.padding()
+                                        
+                                        Picker("Pick_a_color_for_the_event_borders", selection: $ColorsPickers) {
+                                            ForEach(BordersColor.allCases) { thecolor in
+                                                Text(thecolor.title).tag(thecolor)
+                                                    .fontWeight(.bold)
                                                 
-                                                
-                                            }.padding()
+                                            }.pickerStyle(.segmented)
+                                        }.padding(.horizontal)
+                                        
+                                        Notification()
+                                        
+                                        //                                            Button {
+                                        //                                                guard !titleName.isEmpty else { return }
+                                        //
+                                        //                                                notify.askPermission()
+                                        //                                                vm.addReminder(title: titleName, date: selectedDate)
+                                        //                                                vm.fetchReminders()
+                                        //
+                                        //                                            } label: {
+                                        //                                                Text("Alert_")
+                                        //                                                    .font(.headline)
+                                        //                                                    .foregroundColor(.accentColor)
+                                        //                                                    .frame(height: 40)
+                                        //                                                    .frame(maxWidth: .infinity)
+                                        //                                            }
+                                        //
+                                        //
+                                        
+                                        Button (action: {
+                                            addEvent()
                                             
-                                            Picker("Pick_a_color_for_the_event_borders", selection: $ColorsPickers) {
-                                                ForEach(BordersColor.allCases) { thecolor in
-                                                    Text(thecolor.title).tag(thecolor)
-                                                        .fontWeight(.bold)
-                                                    
-                                                }.pickerStyle(.segmented)
-                                            }.padding(.horizontal)
-                                            
-                                            Notification()
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            //                                            Button {
-                                            //                                                guard !titleName.isEmpty else { return }
-                                            //
-                                            //                                                notify.askPermission()
-                                            //                                                vm.addReminder(title: titleName, date: selectedDate)
-                                            //                                                vm.fetchReminders()
-                                            //
-                                            //                                            } label: {
-                                            //                                                Text("Alert_")
-                                            //                                                    .font(.headline)
-                                            //                                                    .foregroundColor(.accentColor)
-                                            //                                                    .frame(height: 40)
-                                            //                                                    .frame(maxWidth: .infinity)
-                                            //                                            }
-                                            //
-                                            //
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            Button (action: {
-                                                addEvent()
-                                                
-                                            }, label: {
-                                                Text("Add_Event")
-                                                    .accessibilityLabel("Add_a_new_event")
-                                                    .font(.title3)
-                                                    .fontWeight(.semibold)
-                                                    .padding (16.0)
-                                                    .background(Color.accentColor)
-                                                    .foregroundColor(.white)
-                                                    .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
-                                            }).onTapGesture {
-                                                dismiss()
-                                            }
+                                        }, label: {
+                                            Text("Add_Event")
+                                                .accessibilityLabel("Add_a_new_event")
+                                                .font(.title3)
+                                                .fontWeight(.semibold)
+                                                .padding (16.0)
+                                                .background(Color.accentColor)
+                                                .foregroundColor(.white)
+                                                .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
+                                        }).onTapGesture {
+                                            dismiss()
                                         }
                                     }
                                 }
-                                .frame(height: 20)
-                                .padding(.top)
-                                .padding(.horizontal, 24)
-                                .font(.title3)
-                                .foregroundColor(.accentColor)
-                        }
-                        //                    VStack{
-                        //                        HStack(alignment: .top){
-                        //                            Spacer()
-                        //                            Button{
-                        //                                AddingEvents()
-                        //                            } label: {
-                        //                                Text("Add_")
-                        //                            }
-                        //
-                        //
-                        //                        }
-                        Spacer()
-                        
-                    }.padding()
-                    VStack(alignment: .center){
-                        EmptyView()
+                            }
+                            .frame(height: 20)
+                            .padding(.top)
+                            .padding(.horizontal, 24)
+                            .font(.title3)
+                            .foregroundColor(.accentColor)
                     }
-                    
-                    
-                } else {
-                    
                     //                    VStack{
                     //                        HStack(alignment: .top){
                     //                            Spacer()
@@ -249,113 +231,20 @@ struct Event1: View {
                     //
                     //
                     //                        }
-                    //                        Spacer()
-                    //                    }.padding()
+                    
+                    Spacer()
+                    
+                }.padding()
+                
+                if(allEvents.isEmpty) {
+                    VStack(alignment: .center){
+                        EmptyView()
+                    }
+                    
+                    
+                } else {
+                    
                     ZStack{
-                        VStack(alignment: .trailing){
-                            HStack(alignment: .top){
-                                Spacer()
-                                Button("Add_") {
-                                    showingDetail = true
-                                }.accessibilityLabel("Addـaـnewـevent")
-                                    .sheet(isPresented: $showingDetail) {
-                                        ScrollView{
-                                            
-                                            
-                                            VStack {
-                                                
-                                                DatePicker("Please_choose_a_date", selection: $dueDate)
-                                                    .accessibilityLabel("Please_choose_a_date")
-                                                    .padding([.leading, .bottom, .trailing])
-                                                    .labelsHidden()
-                                                    .datePickerStyle(.graphical)
-                                                
-                                                
-                                                VStack(alignment: .leading){
-                                                    Text("Event_Name:")
-                                                        .font(.title3)
-                                                        .fontWeight(.semibold)
-                                                    TextField("Event_Name", text: $name)
-                                                        .textFieldStyle(.roundedBorder)
-                                                        .accessibilityLabel("Enter_event_Name")
-                                                    
-                                                    
-                                                }.padding()
-                                                
-                                                Picker("Pick_a_color_for_the_event_borders", selection: $ColorsPickers) {
-                                                    ForEach(BordersColor.allCases) { thecolor in
-                                                        Text(thecolor.title).tag(thecolor)
-                                                            .fontWeight(.bold)
-                                                        
-                                                    }.pickerStyle(.segmented)
-                                                }.padding(.horizontal)
-                                                
-                                                Notification()
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                //                                            Button {
-                                                //                                                guard !titleName.isEmpty else { return }
-                                                //
-                                                //                                                notify.askPermission()
-                                                //                                                vm.addReminder(title: titleName, date: selectedDate)
-                                                //                                                vm.fetchReminders()
-                                                //
-                                                //                                            } label: {
-                                                //                                                Text("Alert_")
-                                                //                                                    .font(.headline)
-                                                //                                                    .foregroundColor(.accentColor)
-                                                //                                                    .frame(height: 40)
-                                                //                                                    .frame(maxWidth: .infinity)
-                                                //                                            }
-                                                //
-                                                //
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                Button (action: {
-                                                    addEvent()
-                                                    
-                                                }, label: {
-                                                    Text("Add_Event")
-                                                        .accessibilityLabel("Add_a_new_event")
-                                                        .font(.title3)
-                                                        .fontWeight(.semibold)
-                                                        .padding (16.0)
-                                                        .background(Color.accentColor)
-                                                        .foregroundColor(.white)
-                                                        .clipShape(RoundedRectangle (cornerRadius:10.0, style: .continuous))
-                                                }).onTapGesture {
-                                                    dismiss()
-                                                }
-                                            }
-                                        }
-                                    }
-                                    .frame(height: 20)
-                                    .padding(.top)
-                                    .padding(.horizontal, 24)
-                                    .font(.title3)
-                                    .foregroundColor(.accentColor)
-                            }
-                            //                    VStack{
-                            //                        HStack(alignment: .top){
-                            //                            Spacer()
-                            //                            Button{
-                            //                                AddingEvents()
-                            //                            } label: {
-                            //                                Text("Add_")
-                            //                            }
-                            //
-                            //
-                            //                        }
-                            Spacer()
-                            
                         
                         //                        EventsList()
                         
@@ -398,13 +287,13 @@ struct Event1: View {
                             }.onDelete(perform: deleteEvent)
                         }.accessibilityLabel("Press_on_the_lists_to_view_their_information")
                             .scrollContentBackground(.hidden)
-                        }.padding()
-                    }
+                    }.padding()
                 }
             }
-            }
+            
         }
     }
+}
 
 
 

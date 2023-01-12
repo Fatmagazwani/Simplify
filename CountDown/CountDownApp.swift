@@ -17,9 +17,9 @@ struct CountDownApp: App {
         WindowGroup {
             NavigationView{
 //                AddingEvents()
-//                LoadingView().environment(\.managedObjectContext, persistentContainer.viewContext)
+                LoadingView().environment(\.managedObjectContext, persistentContainer.viewContext)
 //                OnbordingView()
-                Event1().environment(\.managedObjectContext, persistentContainer.viewContext)
+//                Event1().environment(\.managedObjectContext, persistentContainer.viewContext)
 //                CircularTimer()
             }
         }
