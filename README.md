@@ -38,10 +38,10 @@ event/deadlines so that it makes their life easier .
 <hr>
 
 ## Challenge Statment : 
-## * Problems : 
-1.We find defucelt implementing core data with swiftui .  
+### * Problems : 
+1. We find defucelt implementing core data with swiftui .  
 
-## * Features :
+### * Features :
 1. Countdown to the event/deadline day/time .
 2. Accessibility - Voice over .
 3. Multilingual - Arabic , English .
