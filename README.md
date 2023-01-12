@@ -39,7 +39,7 @@ event/deadlines so that it makes their life easier .
 
 ## Challenge Statment : 
 ### * Problems : 
-1. We find defucelt implementing core data with swiftui .  
+1. We find defecult implementing core data with swiftui .  
 
 ### * Features :
 1. Countdown to the event/deadline day/time .
