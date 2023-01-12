@@ -47,5 +47,5 @@ event/deadlines so that it makes their life easier .
 3. Multilingual - Arabic , English .
 <hr>
 
-# Demo Link : 
+# DEMO Link : 
 [Demo](https://files.fm/u/khseb4anp)
