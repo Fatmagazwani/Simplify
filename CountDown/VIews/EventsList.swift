@@ -10,7 +10,7 @@ import SwiftUI
 struct EventsList: View {
     var body: some View {
         
-        Text("list")
+        Text("lists")
 //        ScrollView{
 //            List{
 //                ForEach(allEvents) { event in
